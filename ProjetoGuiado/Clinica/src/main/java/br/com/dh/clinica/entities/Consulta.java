@@ -1,25 +1,34 @@
 package br.com.dh.clinica.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Consulta implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private LocalDate dataCadastro;
-    private LocalDate dataAtendimento;
+    private LocalDate datacadastro;
+    private LocalDate dataatendimento;
     private Paciente paciente;
     private Dentista dentista;
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "paciente_id")
+    private Paciente pacienteId;
+
     public Consulta() {
     }
 
-    public Consulta(Integer id, LocalDate dataCadastro, LocalDate dataAtendimento, Paciente paciente, Dentista dentista, Usuario usuario) {
+    public Consulta(Integer id, LocalDate datacadastro, LocalDate dataatendimento, Paciente paciente, Dentista dentista, Usuario usuario) {
         this.id = id;
-        this.dataCadastro = dataCadastro;
-        this.dataAtendimento = dataAtendimento;
+        this.datacadastro = datacadastro;
+        this.dataatendimento = dataatendimento;
         this.paciente = paciente;
         this.dentista = dentista;
         this.usuario = usuario;
@@ -34,19 +43,19 @@ public class Consulta implements Serializable {
     }
 
     public LocalDate getDataCadastro() {
-        return dataCadastro;
+        return datacadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataCadastro(LocalDate datacadastro) {
+        this.datacadastro = datacadastro;
     }
 
     public LocalDate getDataAtendimento() {
-        return dataAtendimento;
+        return dataatendimento;
     }
 
-    public void setDataAtendimento(LocalDate dataAtendimento) {
-        this.dataAtendimento = dataAtendimento;
+    public void setDataAtendimento(LocalDate dataatendimento) {
+        this.dataatendimento = dataatendimento;
     }
 
     public Paciente getPaciente() {

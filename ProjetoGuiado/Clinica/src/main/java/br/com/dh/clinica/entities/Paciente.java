@@ -1,28 +1,42 @@
 package br.com.dh.clinica.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table
 public class Paciente implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
     private String cpf;
-    private LocalDate dataCadastro;
-    private Endereco endereco;
+    private LocalDate datacadastro;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "paciente_endereco",
+            joinColumns = @JoinColumn(name = "paciente_id"),
+            inverseJoinColumns = @JoinColumn(name= "endereco_id"))
+    private Set<Endereco> enderecos = new HashSet<>();
+
+    @OneToMany(mappedBy = "paciente")
+    private Set<Consulta> consultas = new HashSet<>();
 
     public Paciente() {
     }
 
-    public Paciente(Integer id, String nome, String email, String cpf, LocalDate dataCadastro, Endereco endereco) {
+    public Paciente(Integer id, String nome, String email, String cpf, LocalDate datacadastro) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        this.dataCadastro = dataCadastro;
-        this.endereco = endereco;
+        this.datacadastro = datacadastro;
     }
 
     public Integer getId() {
@@ -58,18 +72,15 @@ public class Paciente implements Serializable {
     }
 
     public LocalDate getDataCadastro() {
-        return dataCadastro;
+        return datacadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataCadastro(LocalDate datacadastro) {
+        this.datacadastro = datacadastro;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Set<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 }

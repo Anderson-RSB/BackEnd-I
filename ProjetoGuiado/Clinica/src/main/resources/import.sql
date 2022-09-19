@@ -3,4 +3,12 @@ INSERT INTO dentista (nome, email, cro, atendeconvenio) VALUES ('Monique Albuque
 INSERT INTO dentista (nome, email, cro, atendeconvenio) VALUES ('Octávio Martinez', 'octaviomtnz@gmail.com', 21455, TRUE);
 INSERT INTO usuario (nome, email, senha, nivelacesso) VALUES ('Leonardo Gomes', 'leogom@gmail.com', '123@Abc', 2);
 INSERT INTO usuario (nome, email, senha, nivelacesso) VALUES ('Leandro Gomes', 'legom@gmail.com', '123@Abc', 2);
-INSERT INTO endereco (rua, numero, bairro, cidade, estado) VALUES('rua a', '1', 'b', 'c', 'trikas');
+INSERT INTO paciente (nome, email, cpf, datacadastro) VALUES ('Lewis Hamilton', 'hamiltonf1@gmail.com', '321654789-52', '2022-08-30');
+INSERT INTO paciente (nome, email, cpf, datacadastro) VALUES ('Charles Leclerc', 'leclerc@gmail.com', '255633021-54', '2022-08-30');
+INSERT INTO paciente (nome, email, cpf, datacadastro) VALUES ('Fernando Alonso', 'alonso-piloto@gmail.com', '541144787-95', '2022-09-01');
+INSERT INTO endereco (rua, numero, bairro, cidade, estado) VALUES ('Rua Farroupilha', '2154', 'Centro', 'Porto Alegre', 'RS');
+INSERT INTO endereco (rua, numero, bairro, cidade, estado) VALUES ('Rua Santos Dumont', '255', 'Cidade Baixa', 'Porto Alegre', 'RS');
+INSERT INTO endereco (rua, numero, bairro, cidade, estado) VALUES ('Servidão Almeida', '52', 'Centro', 'Florianópolis', 'SC');
+INSERT INTO paciente_endereco (paciente_id, endereco_id) VALUES (1, 3);
+INSERT INTO paciente_endereco (paciente_id, endereco_id) VALUES (2, 2);
+INSERT INTO paciente_endereco (paciente_id, endereco_id) VALUES (3, 1);

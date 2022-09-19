@@ -56,6 +56,6 @@ public class DentistaService {
         return new DentistaDto(entidade);
     }
 
-    // garante o bom funcionamento na hora da persistencia de dados
+    // O Transactional garante o bom funcionamento na hora da persistencia de dados
     // para get usa-se o true, pois nenhuma alteração será realizada
 }

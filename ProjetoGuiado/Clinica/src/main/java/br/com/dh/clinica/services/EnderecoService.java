@@ -37,25 +37,39 @@ public class EnderecoService {
     @Transactional
     public EnderecoDto inserir(EnderecoDto dto) {
         Endereco entidade = new Endereco();
-        entidade.setRua(dto.getRua());
+        copiarDtoParaEntidade(dto, entidade);
+        entidade = repository.save(entidade);
+        return new EnderecoDto(entidade);
+/*        entidade.setRua(dto.getRua());
         entidade.setNumero(dto.getNumero());
         entidade.setBairro(dto.getBairro());
         entidade.setCidade(dto.getCidade());
         entidade.setEstado(dto.getEstado());
         entidade = repository.save(entidade);                // Retorna o objeto com ID
-        return new EnderecoDto(entidade);
+        return new EnderecoDto(entidade);*/
     }
 
     @Transactional
     public EnderecoDto atualizar(Integer id, EnderecoDto dto) {
         Endereco entidade = repository.getReferenceById(id);
-        entidade.setRua(dto.getRua());
+        copiarDtoParaEntidade(dto, entidade);
+        entidade = repository.save(entidade);
+        return new EnderecoDto(entidade);
+/*        entidade.setRua(dto.getRua());
         entidade.setNumero(dto.getNumero());
         entidade.setBairro(dto.getBairro());
         entidade.setCidade(dto.getCidade());
         entidade.setEstado(dto.getEstado());
         entidade = repository.save(entidade);
-        return new EnderecoDto(entidade);
+        return new EnderecoDto(entidade);*/
+    }
+
+    private void copiarDtoParaEntidade(EnderecoDto dto, Endereco entidade) {
+        entidade.setRua(dto.getRua());
+        entidade.setNumero(dto.getNumero());
+        entidade.setBairro(dto.getBairro());
+        entidade.setCidade(dto.getCidade());
+        entidade.setEstado(dto.getEstado());
     }
 
 }
